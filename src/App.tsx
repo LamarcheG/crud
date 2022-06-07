@@ -4,55 +4,9 @@ import "./App.css";
 import { IRecipe } from "interfaces/interface";
 
 function App() {
-  const recipesArray: IRecipe[] = [
-    {
-      id: 1,
-      name: "Pizza",
-      description:
-        "A pizza is a flatbread typically topped with tomato sauce and cheese and baked in an oven.",
-      ingredients: [
-        { id: 1, name: "dough", quantity: 1 },
-        { id: 2, name: "tomato", quantity: 2 },
-        { id: 3, name: "cheese", quantity: 1 },
-      ],
-      steps: [
-        { id: 1, description: "Preheat oven to 400 degrees" },
-        { id: 2, description: "Mix ingredients" },
-        { id: 3, description: "Bake for 20 minutes" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Spaghetti",
-      description:
-        "Spaghetti is a type of pasta, typically a short, cylindrical noodle.",
-      ingredients: [
-        { id: 1, name: "pasta", quantity: 1 },
-        { id: 2, name: "tomato", quantity: 2 },
-      ],
-      steps: [
-        { id: 1, description: "Preheat oven to 400 degrees" },
-        { id: 2, description: "Mix ingredients" },
-        { id: 3, description: "Bake for 10 minutes" },
-      ],
-    },
-    {
-      id: 3,
-      name: "Lasagna",
-      description:
-        "Lasagna is a type of pasta, typically a short, cylindrical noodle.",
-      ingredients: [
-        { id: 1, name: "pasta", quantity: 1 },
-        { id: 2, name: "sauce", quantity: 2 },
-        { id: 3, name: "cheese", quantity: 1 },
-      ],
-      steps: [
-        { id: 1, description: "Preheat oven to 400 degrees" },
-        { id: 2, description: "Mix ingredients" },
-        { id: 3, description: "Bake for 30 minutes" },
-      ],
-    },
-  ];
+  var fileRecipes = require("./utility/Recipes.json");
+
+  const recipesArray: IRecipe[] = fileRecipes;
   useEffect(() => {
     if (localStorage.getItem("recipes") === null) {
       localStorage.setItem("recipes", JSON.stringify(recipesArray));
@@ -60,7 +14,7 @@ function App() {
     setRecipes(
       JSON.parse(localStorage.getItem("recipes") || "[]") as IRecipe[]
     );
-  }, []);
+  }, [recipesArray]);
 
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 

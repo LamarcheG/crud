@@ -14,3 +14,8 @@ export interface IStep {
   id: number;
   description: string;
 }
+export interface ITask {
+  id: number;
+  name: string;
+  deadline: Date;
+}

@@ -70,9 +70,7 @@ function App() {
       {/* <RecipeList recipes={recipes}></RecipeList> */}
       <form onSubmit={onSubmitHandler} className="formTask">
         <div className="inputTaskName formEntry">
-          <label htmlFor="task" placeholder="Task">
-            Task
-          </label>
+          <label htmlFor="task">Task</label>
           <input
             type="text"
             name="task"
@@ -82,9 +80,7 @@ function App() {
           />
         </div>
         <div className="inputDeadline formEntry">
-          <label htmlFor="deadline" placeholder="Deadline(days)">
-            Deadline
-          </label>
+          <label htmlFor="deadline">Deadline</label>
           <input
             type="date"
             name="deadline"

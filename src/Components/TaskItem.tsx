@@ -43,21 +43,18 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             }}
           >
             <div className="inputTaskName formEntry">
-              <label htmlFor="task" placeholder="Task">
-                Task
-              </label>
+              <label htmlFor="task">Task</label>
               <input
                 type="text"
                 name="task"
                 id="task"
                 value={editedTaskName}
                 onChange={onChangeHandler}
+                placeholder={task.name}
               />
             </div>
             <div className="inputDeadline formEntry">
-              <label htmlFor="deadline" placeholder="Deadline(days)">
-                Deadline
-              </label>
+              <label htmlFor="deadline">Deadline</label>
               <input
                 type="date"
                 name="deadline"

@@ -1,5 +1,6 @@
 import { ITask } from "interfaces/interface";
 import React, { useState } from "react";
+import styled from "styled-components";
 
 interface TaskItemProps {
   task: ITask;
@@ -25,7 +26,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   };
   return (
     <>
-      <div className="taskContainer">
+      <TaskItemStyled>
         <p>{`Task: ${task.name}`}</p>
         <p>{`Deadline: ${task.deadline.toLocaleDateString()}`}</p>
         <button onClick={() => onDelete(task.id)}>Delete</button>
@@ -42,7 +43,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               setIsEditing(false);
             }}
           >
-            <div className="inputTaskName formEntry">
+            <FormEntry className="inputTaskName">
               <label htmlFor="task">Task</label>
               <input
                 type="text"
@@ -52,8 +53,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                 onChange={onChangeHandler}
                 placeholder={task.name}
               />
-            </div>
-            <div className="inputDeadline formEntry">
+            </FormEntry>
+            <FormEntry className="inputDeadline">
               <label htmlFor="deadline">Deadline</label>
               <input
                 type="date"
@@ -61,11 +62,26 @@ export const TaskItem: React.FC<TaskItemProps> = ({
                 id="deadline"
                 onChange={onChangeHandler}
               />
-            </div>
+            </FormEntry>
             <button type="submit">Save</button>
           </form>
         )}
-      </div>
+      </TaskItemStyled>
     </>
   );
 };
+const TaskItemStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 5px 10px;
+  border-radius: 10px;
+`;
+
+const FormEntry = styled.div`
+  padding: 5px;
+`;

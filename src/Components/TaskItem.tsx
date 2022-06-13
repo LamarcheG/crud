@@ -80,8 +80,19 @@ const TaskItemStyled = styled.div`
   margin: 0 auto;
   padding: 5px 10px;
   border-radius: 10px;
+
+  & p {
+    padding: 0px 10px;
+  }
 `;
 
 const FormEntry = styled.div`
   padding: 5px;
+
+  & label {
+    padding: 0px 5px;
+    ::after {
+      content: " :";
+    }
+  }
 `;

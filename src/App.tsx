@@ -4,6 +4,7 @@ import "./App.css";
 import { IRecipe, ITask } from "interfaces/interface";
 import RecipeList from "Components/RecipeList";
 import { TaskItem } from "Components/TaskItem";
+import styled from "styled-components";
 
 function App() {
   // var fileRecipes = require("./utility/Recipes.json");
@@ -68,8 +69,8 @@ function App() {
   return (
     <div className="App">
       {/* <RecipeList recipes={recipes}></RecipeList> */}
-      <form onSubmit={onSubmitHandler} className="formTask">
-        <div className="inputTaskName formEntry">
+      <Form onSubmit={onSubmitHandler}>
+        <FormEntry className="inputTaskName">
           <label htmlFor="task">Task</label>
           <input
             type="text"
@@ -78,8 +79,8 @@ function App() {
             value={taskName}
             onChange={onChangeHandler}
           />
-        </div>
-        <div className="inputDeadline formEntry">
+        </FormEntry>
+        <FormEntry className="inputDeadline">
           <label htmlFor="deadline">Deadline</label>
           <input
             type="date"
@@ -88,9 +89,9 @@ function App() {
             onChange={onChangeHandler}
             min={today.toISOString().split("T")[0]}
           />
-        </div>
+        </FormEntry>
         <button type="submit">Add</button>
-      </form>
+      </Form>
       <ul>
         {todoList.map((task: ITask, key: number) => {
           return (
@@ -109,3 +110,22 @@ function App() {
 }
 
 export default App;
+
+const AppContainer = styled.div``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+`;
+const FormEntry = styled.div`
+  padding: 5px;
+
+  & label {
+    padding: 0px 5px;
+    ::after {
+      content: " :";
+    }
+  }
+`;

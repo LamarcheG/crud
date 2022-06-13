@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import { IRecipe, ITask } from "interfaces/interface";
 import RecipeList from "Components/RecipeList";
 import { TaskItem } from "Components/TaskItem";
@@ -111,7 +110,9 @@ function App() {
 
 export default App;
 
-const AppContainer = styled.div``;
+const AppContainer = styled.div`
+  text-align: center;
+`;
 const Form = styled.form`
   display: flex;
   flex-direction: column;

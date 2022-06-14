@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
 }
 
 code {
@@ -12,7 +13,11 @@ code {
     monospace;
 }
 
-ul{
-  list-style: none;
-  padding: 0;
+
+:root {
+  --primary-color: #91C7DA;
+  --secondary-color: #53BADF;
+  --tertiary-color: #00325C;
+  --text-color:#2b2b2b;
+  --background-color: #e9f5ffb9;
 }

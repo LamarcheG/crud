@@ -17,5 +17,5 @@ export interface IStep {
 export interface ITask {
   id: number;
   name: string;
-  deadline: Date;
+  deadline: number | null;
 }

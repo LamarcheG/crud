@@ -15,24 +15,24 @@ export const TaskItem: React.FC<TaskItemProps> = ({
 }: TaskItemProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTaskName, setEditedTaskName] = useState("");
-  const [editedDeadline, setEditedDeadline] = useState(new Date());
+  const [editedDeadline, setEditedDeadline] = useState<number | null>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "task") {
       setEditedTaskName(e.target.value);
     } else if (e.target.name === "deadline") {
-      setEditedDeadline(new Date(e.target.value));
+      setEditedDeadline(Number(e.target.value));
     }
   };
   return (
     <>
       <TaskItemStyled>
         <p>{`Task: ${task.name}`}</p>
-        <p>{`Deadline: ${task.deadline.toLocaleDateString()}`}</p>
+        <p>{`Deadline (Days): ${task.deadline}`}</p>
         <button onClick={() => onDelete(task.id)}>Delete</button>
         <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
         {isEditing && (
-          <form
+          <Form
             onSubmit={(e) => {
               e.preventDefault();
               onEdit(task.id, {
@@ -55,16 +55,16 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               />
             </FormEntry>
             <FormEntry className="inputDeadline">
-              <label htmlFor="deadline">Deadline</label>
+              <label htmlFor="deadline">Deadline (Days)</label>
               <input
-                type="date"
+                type="number"
                 name="deadline"
                 id="deadline"
                 onChange={onChangeHandler}
               />
             </FormEntry>
             <button type="submit">Save</button>
-          </form>
+          </Form>
         )}
       </TaskItemStyled>
     </>
@@ -95,4 +95,11 @@ const FormEntry = styled.div`
       content: " :";
     }
   }
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

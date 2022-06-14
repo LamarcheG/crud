@@ -19,18 +19,34 @@ function App() {
   // }, [recipesArray]);
 
   // const [recipes, setRecipes] = useState<IRecipe[]>([]);
+
+  const toDos: ITask[] = [];
+
   const [taskName, setTaskName] = useState<string>("");
-  const [deadline, setDeadline] = useState<Date>(new Date());
-  const [todoList, setTodoList] = useState<ITask[]>([]);
+  const [deadline, setDeadline] = useState<number | null>(null);
+  const [todoList, setTodoList] = useState<ITask[]>(() => {
+    return JSON.parse(localStorage.getItem("toDos") || "[]") as ITask[];
+  });
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("toDos") === null ||
+      localStorage.getItem("toDos")?.length === 0
+    ) {
+      localStorage.setItem("toDos", JSON.stringify(toDos));
+    }
+    setTodoList(JSON.parse(localStorage.getItem("toDos") || "[]") as ITask[]);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("toDos", JSON.stringify(todoList));
+  }, [todoList]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "task") {
       setTaskName(e.target.value);
     } else if (e.target.name === "deadline") {
-      let date = new Date(e.target.value);
-      let nextDay = new Date(date);
-      nextDay.setDate(nextDay.getDate() + 1);
-      setDeadline(nextDay);
+      setDeadline(Number(e.target.value));
     }
   };
 
@@ -43,7 +59,7 @@ function App() {
     };
     setTodoList([newTask, ...todoList]);
     setTaskName("");
-    setDeadline(new Date());
+    setDeadline(null);
   };
 
   const onDeleteHandler = (id: number) => {
@@ -53,20 +69,11 @@ function App() {
 
   const onEditHandler = (id: number, editedTask: ITask) => {
     if (todoList.find((task) => task.id === id)) {
-      setTodoList([
-        ...todoList.filter((task) => task.id !== id),
-        {
-          ...editedTask,
-          deadline: new Date(
-            editedTask.deadline.setDate(editedTask.deadline.getDate() + 1)
-          ),
-        },
-      ]);
+      setTodoList([...todoList.filter((task) => task.id !== id), editedTask]);
     }
   };
-  const today = new Date();
   return (
-    <div className="App">
+    <AppContainer>
       {/* <RecipeList recipes={recipes}></RecipeList> */}
       <Form onSubmit={onSubmitHandler}>
         <FormEntry className="inputTaskName">
@@ -80,13 +87,12 @@ function App() {
           />
         </FormEntry>
         <FormEntry className="inputDeadline">
-          <label htmlFor="deadline">Deadline</label>
+          <label htmlFor="deadline">Deadline (Days)</label>
           <input
-            type="date"
+            type="number"
             name="deadline"
             id="deadline"
             onChange={onChangeHandler}
-            min={today.toISOString().split("T")[0]}
           />
         </FormEntry>
         <button type="submit">Add</button>
@@ -104,7 +110,7 @@ function App() {
           );
         })}
       </ul>
-    </div>
+    </AppContainer>
   );
 }
 

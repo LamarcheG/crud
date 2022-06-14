@@ -176,7 +176,7 @@ const EditButton = styled.button`
   &:hover {
     background-color: var(--secondary-color);
     color: var(--text-color);
-    transform: scale(1.02);
+    transform: scale(1.05);
   }
 `;
 const SaveButton = styled.button`

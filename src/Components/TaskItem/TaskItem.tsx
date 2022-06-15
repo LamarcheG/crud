@@ -74,8 +74,8 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               ...task,
               name: editedTaskName,
               deadline: editedDeadline,
+              isEditing: false,
             });
-            changeEditStatus(task.id);
           }}
         >
           <FormEntry className="inputTaskName">

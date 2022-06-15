@@ -4,6 +4,7 @@ export const AppContainer = styled.div`
   text-align: center;
   color: var(--text-color);
 `;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -16,6 +17,7 @@ export const Form = styled.form`
   height: 150px;
   padding: 10px 0px;
 `;
+
 export const FormEntry = styled.div`
   & input {
     padding: 5px;
@@ -23,6 +25,7 @@ export const FormEntry = styled.div`
     border: 2px solid var(--secondary-color);
   }
 `;
+
 export const AddButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
@@ -31,13 +34,17 @@ export const AddButton = styled.button`
   padding: 5px 50px;
   color: var(--text-color);
   font-size: 1.2rem;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   &:hover {
     background-color: var(--secondary-color);
     color: var(--text-color);
     transform: scale(1.02);
   }
+  &:active {
+    transform: scale(0.92);
+  }
 `;
+
 export const ListTodo = styled.ul`
   width: 80%;
   margin: 0 auto;
@@ -62,6 +69,7 @@ export const ListTodo = styled.ul`
     margin-top: 30px;
   }
 `;
+
 export const ListTodoItem = styled.li`
   text-align: center;
   &:not(:first-child) {

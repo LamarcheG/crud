@@ -33,12 +33,14 @@ export const Form = styled.form`
   padding: 10px;
   height: 110px;
 `;
+
 export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 `;
+
 export const DeleteButton = styled.button`
   border-color: var(--tertiary-color);
   background-color: var(--background-color);
@@ -64,6 +66,7 @@ export const DeleteButton = styled.button`
     content: "Delete";
   }
 `;
+
 export const EditButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
@@ -71,14 +74,18 @@ export const EditButton = styled.button`
   background-color: var(--secondary-color);
   padding: 5px 10px;
   color: var(--text-color);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   margin: 0px 5px;
   &:hover {
     background-color: var(--secondary-color);
     color: var(--text-color);
     transform: scale(1.05);
   }
+  &:active {
+    transform: scale(0.92);
+  }
 `;
+
 export const SaveButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
@@ -86,11 +93,14 @@ export const SaveButton = styled.button`
   background-color: var(--secondary-color);
   padding: 5px 10px;
   color: var(--text-color);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   margin: 0px 5px;
   &:hover {
     background-color: var(--secondary-color);
     color: var(--text-color);
     transform: scale(1.02);
+  }
+  &:active {
+    transform: scale(0.92);
   }
 `;

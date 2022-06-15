@@ -1,5 +1,5 @@
 import { IRecipe } from "interfaces/interface";
-import Recipe from "./Recipe";
+import Recipe from "../Recipe/Recipe";
 
 interface AppProps {
   recipes: IRecipe[];

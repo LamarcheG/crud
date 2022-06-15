@@ -1,6 +1,15 @@
 import { ITask } from "interfaces/interface";
 import React, { useState } from "react";
-import styled from "styled-components";
+import {
+  ButtonGroup,
+  DeleteButton,
+  EditButton,
+  Form,
+  FormEntry,
+  SaveButton,
+  TaskInfo,
+  TaskItemStyled,
+} from "./TaskItem.style";
 
 interface TaskItemProps {
   task: ITask;
@@ -93,104 +102,3 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     </>
   );
 };
-const TaskItemStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: fit-content;
-  border-radius: 10px;
-  margin: auto;
-  & p {
-    padding: 0px 10px;
-  }
-`;
-
-const TaskInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 2px 0px;
-`;
-
-const FormEntry = styled.div`
-  padding: 5px;
-
-  & label {
-    padding: 0px 5px;
-    ::after {
-      content: " :";
-    }
-  }
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px;
-  height: 110px;
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-`;
-const DeleteButton = styled.button`
-  border-color: var(--tertiary-color);
-  background-color: var(--background-color);
-  border-radius: 50%;
-  padding: 0;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  &:hover {
-    width: 50px;
-    aspect-ratio: unset;
-    border-radius: 5px;
-    padding: 5px 0px;
-    background-color: var(--secondary-color);
-    border: none;
-    color: var(--text-color);
-  }
-  &:hover span {
-    display: none;
-  }
-  &:hover::before {
-    content: "Delete";
-  }
-`;
-const EditButton = styled.button`
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--secondary-color);
-  padding: 5px 10px;
-  color: var(--text-color);
-  transition: all 0.2s ease-in-out;
-  margin: 0px 5px;
-  &:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transform: scale(1.05);
-  }
-`;
-const SaveButton = styled.button`
-  border-radius: 5px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--secondary-color);
-  padding: 5px 10px;
-  color: var(--text-color);
-  transition: all 0.2s ease-in-out;
-  margin: 0px 5px;
-  &:hover {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    transform: scale(1.02);
-  }
-`;

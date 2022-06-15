@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import { IRecipe, ITask } from "interfaces/interface";
-import RecipeList from "Components/RecipeList/RecipeList";
+import { ITask } from "interfaces/interface";
 import { TaskItem } from "Components/TaskItem/TaskItem";
 import {
   AddButton,

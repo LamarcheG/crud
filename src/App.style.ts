@@ -54,29 +54,32 @@ export const ListTodo = styled.ul`
   &::before {
     content: "";
     display: block;
-    width: 100%;
+    width: 50%;
     height: 2px;
     background-color: var(--secondary-color);
+    margin: 0 auto;
     margin-bottom: 30px;
   }
   &::after {
     content: "";
-
     display: block;
-    width: 100%;
+    width: 50%;
     height: 2px;
     background-color: var(--secondary-color);
+    margin: 0 auto;
     margin-top: 30px;
   }
 `;
 
 export const ListTodoItem = styled.li`
+  width: max(40%, 400px);
+  margin: 0 auto;
   text-align: center;
   &:not(:first-child) {
     &::before {
       content: "";
       display: block;
-      width: 60%;
+      width: 100%;
       margin: 0 auto;
       height: 1px;
       background-color: var(--tertiary-color);

@@ -1,24 +1,14 @@
 import styled from "styled-components";
 
-export const TaskItemStyled = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: fit-content;
-  border-radius: 10px;
-  margin: auto;
-  & p {
-    padding: 0px 10px;
-  }
-`;
-
 export const TaskInfo = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   padding: 2px 0px;
+  &[data-is-done="true"] p {
+    text-decoration: line-through;
+  }
 `;
 
 export const FormEntry = styled.div`
@@ -39,6 +29,7 @@ export const ButtonGroup = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  width: 85px;
 `;
 
 export const DeleteButton = styled.button`
@@ -75,7 +66,6 @@ export const EditButton = styled.button`
   padding: 5px 10px;
   color: var(--text-color);
   transition: all 0.1s ease-in-out;
-  margin: 0px 5px;
   &:hover {
     background-color: var(--secondary-color);
     color: var(--text-color);

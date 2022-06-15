@@ -18,4 +18,6 @@ export interface ITask {
   id: number;
   name: string;
   deadline: number | null;
+  isDone: boolean;
+  isEditing: boolean;
 }

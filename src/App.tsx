@@ -63,15 +63,36 @@ function App() {
       id: todoList.length + 1,
       name: taskName,
       deadline: deadline,
+      isDone: false,
+      isEditing: false,
     };
     setTodoList([newTask, ...todoList]);
-    setTaskName("");
     setDeadline(0);
   };
 
   const onDeleteHandler = (id: number) => {
-    const newTodoList = todoList.filter((task) => task.id !== id);
-    setTodoList(newTodoList);
+    setTodoList([...todoList.filter((task) => task.id !== id)]);
+  };
+
+  const changeEditStatus = (id: number) => {
+    setTodoList(
+      todoList.map((task) => {
+        if (task.id === id) {
+          task.isEditing = !task.isEditing;
+        }
+        return task;
+      })
+    );
+  };
+  const changeDoneStatus = (id: number) => {
+    setTodoList(
+      todoList.map((task) => {
+        if (task.id === id) {
+          task.isDone = !task.isDone;
+        }
+        return task;
+      })
+    );
   };
 
   const onEditHandler = (id: number, editedTask: ITask) => {
@@ -115,6 +136,8 @@ function App() {
                 task={task}
                 onDelete={onDeleteHandler}
                 onEdit={onEditHandler}
+                changeDoneStatus={changeDoneStatus}
+                changeEditStatus={changeEditStatus}
               />
             </ListTodoItem>
           );

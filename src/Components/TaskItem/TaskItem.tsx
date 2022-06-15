@@ -14,15 +14,17 @@ interface TaskItemProps {
   task: ITask;
   onDelete: (id: number) => void;
   onEdit: (id: number, editedTask: ITask) => void;
+  changeEditStatus: (id: number) => void;
+  changeDoneStatus: (id: number) => void;
 }
 
 export const TaskItem: React.FC<TaskItemProps> = ({
   task,
   onDelete,
   onEdit,
+  changeEditStatus,
+  changeDoneStatus,
 }: TaskItemProps) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [isDone, setIsDone] = useState(false);
   const [editedTaskName, setEditedTaskName] = useState("");
   const [editedDeadline, setEditedDeadline] = useState<number>(0);
 
@@ -32,25 +34,26 @@ export const TaskItem: React.FC<TaskItemProps> = ({
     } else if (e.target.name === "deadline") {
       setEditedDeadline(Number(e.target.value));
     } else if (e.target.name === "done") {
-      setIsDone(e.target.checked);
+      changeDoneStatus(task.id);
     }
   };
   return (
     <>
-      {!isEditing && (
-        <TaskInfo data-is-done={isDone ? "true" : "false"}>
+      {!task.isEditing && (
+        <TaskInfo data-is-done={task.isDone}>
           <input
             type="checkbox"
             name="done"
             id="done"
+            checked={task.isDone}
             onChange={onChangeHandler}
           />
           <p>{`Task: ${task.name}`}</p>
           <p>{`Deadline (Days): ${task.deadline}`}</p>
           <ButtonGroup>
-            {!isDone && (
+            {!task.isDone && (
               <EditButton
-                onClick={() => setIsEditing(!isEditing)}
+                onClick={() => changeEditStatus(task.id)}
                 type="button"
               >
                 Edit
@@ -63,7 +66,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         </TaskInfo>
       )}
 
-      {isEditing && (
+      {task.isEditing && (
         <Form
           onSubmit={(e) => {
             e.preventDefault();
@@ -72,7 +75,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
               name: editedTaskName,
               deadline: editedDeadline,
             });
-            setIsEditing(false);
+            changeEditStatus(task.id);
           }}
         >
           <FormEntry className="inputTaskName">
@@ -97,7 +100,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
             />
           </FormEntry>
           <ButtonGroup>
-            <EditButton onClick={() => setIsEditing(!isEditing)} type="button">
+            <EditButton onClick={() => changeEditStatus(task.id)} type="button">
               Cancel
             </EditButton>
             <SaveButton type="submit">Save</SaveButton>
